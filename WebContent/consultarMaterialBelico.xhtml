@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title><ui:insert name="titulo">Pesquisar Armamento</ui:insert></title>
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+	<link rel="stylesheet" type="text/css" href="css/estilo.css" />
+
+</h:head>
+
+<body>
+<p:panel align="center" style=" border:2px solid #87cefa;">
+
+<h:form id="forma" prependId="false">
+	
+	<p:panel style=" border:2px solid #87cefa;">
+	<h1 style="color:#87cefa;"> Materiais Cadastrados</h1>
+	<hr size="2" color="#87cefa">
+</hr>	
+	
+		</p:panel>		
+		<br/>
+	</h:form>
+
+               <h:form id="form" prependId="false">
+
+			
+		
+	<p:menubar style="background:#87cefa;">
+	
+	
+	
+	<p:submenu label="Cadastro de Funcionarios">
+	<p:submenu label="Novo Funcionário">
+	<p:menuitem  value="Dados de Admissão" icon="ui-icon-disk" url="editarPolicial.jsf"/>
+	</p:submenu>
+	
+	<p:submenu  label="Buscar Funcionário" >
+	<p:menuitem icon="ui-icon-search" value=" Admitidos"  url="consultarPolicial.jsf"/>
+	</p:submenu>
+	
+	
+	</p:submenu>
+	
+	
+	
+	<p:submenu label="Cadastro de Material Bélico">
+	<p:menuitem value="Novo Material Bélico"  url="editarMaterialBelico.jsf"/>
+	<p:menuitem  value="Consultar Material" icon="ui-icon-search" url="consultarMaterialBelico.jsf"/>
+	
+	</p:submenu>
+	
+	
+	
+	<p:submenu label="Cadastro de Setores">
+	<p:menuitem value="Consultar Setor" icon="ui-icon-search" url="editarSetor.jsf"/>
+	</p:submenu>
+	
+	<p:submenu label="Adicionar Carga ao Policial">
+		<p:menuitem value="Adicionar Carga" icon="ui-icon-search" url="adicionarCarga.jsf"/>
+			   
+			    <p:menuitem value="Relatório de Cargas" icon="ui-icon-search" url="RelatorioCargas.jsf"/>
+		
+		</p:submenu>
+	
+		
+	
+	<p:submenu label="Abrir Chamado">
+	<p:menuitem value="Novo Chamado" icon="ui-icon-disk" url="abrirChamado.jsf"/>
+	<p:menuitem  value="Chamados Abertos" icon="ui-icon-search" url="chamadoAberto.jsf"/>
+	
+	<p:submenu label="Mapa de Localização">
+	<p:menuitem value="Localizar Armas" icon="ui-icon-disk" url="Mapa.jsf"/>
+		<p:menuitem value="Relatório de Armas" icon="ui-icon-disk" url="RelatorioArmas.jsf"/>
+	
+	
+	</p:submenu>
+	
+	</p:submenu>
+	<p:submenu label="Sair">
+	<p:menuitem value="Deslogar" icon="ui-icon-arrowrefresh-1-w" url="login.jsf"/>
+	
+	
+	</p:submenu>
+
+	</p:menubar>
+			<br/>
+			<br/>
+			
+<div align="center">
+<p:fieldset columns="2" style=" border:2px solid #87cefa;">
+			<p:commandButton  value="Pesquisar por Série" ajax="false" action="#{materialbelicoMB.acaoPesquisar}"/>	
+
+			<p:inputText style="width:250px;" id="nm_serie" placeholder="Digite o numero de Série" value="#{materialbelicoMB.filtroNm_serie}"
+				required="false"></p:inputText>
+		
+			
+			</p:fieldset>
+			<br></br>
+			</div>
+		
+<br/>		<br/>
+
+<p:dataTable id="tabela" value="#{materialbelicoMB.materialbelicos}" var="mate"
+			rows="10" paginator="true" rowsPerPageTemplate="5,10,15,20,50">
+
+			<p:column>
+				<f:facet name="header">Opções</f:facet>
+					<p:commandButton image="ui-icon-pencil"
+						action="#{materialbelicoMB.acaoAbrirAlteracao(mate.id)}" />
+						
+					<p:commandButton immediate="true" image="ui-icon-close"  onclick="PF('dlg1').show();" />
+   
+ 
+   
+						
+	<p:dialog header="Deseja Excluir" widgetVar="dlg1" minHeight="40">
+	    <p:commandButton immediate="true" value="YES"  onclick="PF('dlg1').show();" action="#{materialbelicoMB.acaoExcluir(mate.id)}"/>
+		<p:commandButton immediate="true" value="NO"  onclick="PF('dlg1').show();" action="#{materialbelicoMB.acaoListar}"/>
+	
+</p:dialog>	
+			
+					
+			</p:column>
+			
+			<p:column>
+				<f:facet name="header">Tipo de Material</f:facet>
+				<h:outputText value="#{mate.tipoMaterial}"></h:outputText>
+			</p:column>
+			
+				<p:column>
+				<f:facet name="header">Número de Série</f:facet>
+				<h:outputText value="#{mate.nm_serie}"></h:outputText>
+			</p:column>
+			
+			<p:column>
+				<f:facet name="header">Status</f:facet>
+				<h:outputText value="#{mate.status}"></h:outputText>
+			</p:column>
+			
+			<p:column>
+				<f:facet name="header">Calibre</f:facet>
+				<h:outputText value="#{mate.calibre}"></h:outputText>
+			</p:column>
+</p:dataTable>
+<br>
+</br>
+<div align="center">
+					<p:commandButton  value="Listar Todos" ajax="false" action="#{materialbelicoMB.retornarConsulta}"/>	
+</div>
+<br>
+</br>
+
+			
+			
+			
+			
+			
+			
+			
+			
+				</h:form>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+		<f:facet name="footer"  >
+		<div >
+	
+	            <div align="center">
+				<h:outputText style="color:#87cefa; font-size: 15px;" value="Copyright&copy; 2017 - by Gabriel Fernando - Trabalho de Conclusão de Curso"></h:outputText>
+				</div>
+				<div align="center">
+                <h:outputLink style="color:red;"  value="https://pmerj.rj.gov.br/" target="blank">Site PMERJ</h:outputLink>
+                
+                                </div>
+                                <h:outputText value="Usuário: " style="color:red;"/>
+	<h:outputText style="color:red;" value="#{loginMB.usuario.nome}"></h:outputText>
+                     <div align="right"> <a href="http://hibernate.org/" target="blank"><p:graphicImage  style="float:right;height:40px; width:40px;" url="img/hibernate.png" 
+					></p:graphicImage></a></div>
+					<div align="right"> <a href="http://tomcat.apache.org/" target="blank"><p:graphicImage style="float:right; height:40px; width:40px;" url="img/download.jpg" 
+					></p:graphicImage></a></div>
+					<div align="right"> <a href="http://www.oracle.com/technetwork/java/index.html" target="blank"><p:graphicImage  style="float:right; height:40px; width:40px;" url="img/java.png"  
+					></p:graphicImage></a></div>
+					<div align="right"> <a href="https://www.primefaces.org/" target="blank"><p:graphicImage   url="img/a.jpg" style="height:40px; width:40px;"
+					></p:graphicImage></a></div>
+					
+					
+					
+				</div>
+			</f:facet>
+
+</p:panel>
+
+
+
+
+
+</body>
+
+
+</html>

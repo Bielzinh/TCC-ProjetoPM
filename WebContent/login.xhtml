@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+	
+<ui:composition template="modelo.xhtml">
+
+
+
+
+	<ui:define name="titulo">Autenticação</ui:define>
+	<ui:define name="conteudo">
+	<div id="login1" align="center">
+		<p:panelGrid columns="2" style=" border:2px solid #87cefa;" >
+				<h:outputLabel value="Login:"  for="Login"></h:outputLabel>
+				<p:inputText id="login" value="#{loginMB.login}" 
+					required="true" requiredMessage="O Campo Login é obrigatório."></p:inputText>
+
+                    <h:outputLabel value="Senha:" for="Senha"></h:outputLabel>	
+					<p:password id="Senha" value="#{loginMB.senha}" feedback="true"  required="true" requiredMessage="A senha é obrigatória"></p:password> 
+<br/>
+
+				
+			<p:commandButton style="height: 24px; width: 100px; " ajax="false" value="Autenticar"
+				action="#{loginMB.acaoAutenticar}"></p:commandButton>
+			
+	 <a href="edicaoUsuario.jsf" style="color:red;" title="Efetuar o Cadastro no Sistema">Cadastrar-se</a>
+				
+		</p:panelGrid>
+		
+		
+		
+</div>
+	</ui:define>
+
+</ui:composition>
+
+</html>

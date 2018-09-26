@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+
+
+
+<title> Usuários Cadastrados</title>
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+	<link rel="stylesheet" type="text/css" href="css/estilo.css" />
+	
+</h:head>
+
+
+<h:body>		
+	
+	
+	<h:form>	
+		
+		<p:toolbar >
+				<p:toolbarGroup align="left">
+					
+					<p:commandButton ajax="false" type="push" value="Login"
+						action="#{cadastroMB.retornarLogin}" image="ui-icon-home"
+						 />
+						 
+					<p:commandButton ajax="false" type="push" value="Novo Usuário"
+						action="#{cadastroMB.acaoIncluir}" image="ui-icon-home"
+						 />
+				</p:toolbarGroup>
+			</p:toolbar>
+			
+	</h:form>
+	
+			<h:form>
+	
+				
+			<br/>
+<div align="center">
+
+			<ui:insert name="imagem">
+				<p:graphicImage url="img/logo-branca-original.png" style="background:black; height:100px; width:400px;;"
+					></p:graphicImage>
+			</ui:insert>
+
+	<p:panelGrid columns="3">
+			<h:outputLabel value="" for="nome"></h:outputLabel>
+			<p:inputText id="nome" value="#{cadastroMB.listarUsuario}" placeholder="Digite o nome" immediate="true" >
+				<f:ajax execute="nome" render="tabela" event="keyup"
+					listener="#{cadastroMB.acaoPesquisarAjax}"></f:ajax>
+			</p:inputText>
+			<p:commandButton value="Buscar" action="#{cadastroMB.acaoPesquisar}">
+				<f:ajax execute="nome" render="tabela"
+					listener="#{cadastroMB.acaoPesquisarAjax}"></f:ajax>
+			</p:commandButton>
+		</p:panelGrid>
+	<br></br>
+
+
+</div>
+
+<p:dataTable id="tabela" value="#{cadastroMB.usuarios}" var="usus"
+			border="1" cellspacing="0" cellpadding="5">
+		
+		
+	
+			<p:column>
+				<f:facet name="header">Opções</f:facet>
+				<p:commandButton ajax="false" value="Excluir" action="#{cadastroMB.acaoExcluir(usus.codigo)}" style="height: 23px;"/>
+				<p:commandButton ajax="false" value="Alterar" action="#{cadastroMB.acaoAlterar(usus.codigo)}" style="height: 23px;" />
+				
+			   
+			</p:column>
+
+	
+<ui:remove>
+ <p:column>
+				<f:facet name="header">Código:</f:facet>
+				<h:outputText value="#{usus.codigo}"></h:outputText>
+			</p:column>
+</ui:remove>		
+
+			<p:column>
+				<f:facet name="header">Nome:</f:facet>
+				<h:outputText value="#{usus.nome}"></h:outputText>
+			</p:column>
+			<p:column>
+				<f:facet name="header">Email: </f:facet>
+				<h:outputText value="#{usus.email}"></h:outputText>
+			</p:column>
+		
+<ui:remove>
+		
+		<p:column>
+				<f:facet name="header">Sexo: </f:facet>
+				<h:outputText value="#{usus.sexo}"></h:outputText>
+			</p:column>
+			
+			
+	</ui:remove>		
+			
+			
+			<p:column>
+				<f:facet name="header">Apelido: </f:facet>
+				<h:outputText value="#{usus.apelido}"></h:outputText>
+			</p:column>
+			
+			
+			
+		<p:column>
+				<f:facet name="header">Login: </f:facet>
+				<h:outputText value="#{usus.login}"></h:outputText>
+			</p:column>
+		
+		
+		<ui:remove>
+		
+		<p:column>
+				<f:facet name="header">Senha: </f:facet>
+		<h:inputHidden value="#{usus.senha}"></h:inputHidden>
+			</p:column>
+			
+	</ui:remove>
+		</p:dataTable>
+		<br/>
+				
+	
+</h:form>
+	
+</h:body>
+
+</html>

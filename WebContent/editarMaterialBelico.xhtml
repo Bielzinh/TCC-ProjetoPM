@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title><ui:insert name="titulo">Cadastro de Material Bélico</ui:insert></title>
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+	<link rel="stylesheet" type="text/css" href="css/estilo.css" />
+
+</h:head>
+<h:body>
+               
+              
+	<p:panel align="center" style=" border:2px solid #87cefa;">
+	
+	<h:form id="forma" prependId="false">
+	
+	<p:panel style=" border:2px solid #87cefa;">
+	<h1 style="color:#87cefa;"> Cadastro de Armamento</h1>
+	<hr size="2" color="#87cefa">
+</hr>	
+	
+		</p:panel>		
+		<br/>
+	</h:form>
+	
+	<h:form id="form" prependId="false">
+	
+	<f:metadata>
+		<f:event type="postAddToView" listener="#{materialbelicoMB.lerMaterialbelico}" />
+	</f:metadata>
+			
+
+			
+	<p:menubar style="background:#87cefa;">
+	
+	
+	
+	<p:submenu label="Cadastro de Funcionarios">
+	<p:submenu label="Novo Funcionário">
+	<p:menuitem  value="Dados de Admissão" icon="ui-icon-disk" url="editarPolicial.jsf"/>
+	</p:submenu>
+	
+	<p:submenu  label="Buscar Funcionário" >
+	<p:menuitem icon="ui-icon-search" value=" Admitidos"  url="consultarPolicial.jsf"/>
+	</p:submenu>
+	
+	
+	</p:submenu>
+	
+	
+	
+	<p:submenu label="Cadastro de Material Bélico">
+	<p:menuitem value="Novo Material Bélico"  url="editarMaterialBelico.jsf"/>
+	<p:menuitem  value="Consultar Material" icon="ui-icon-search" url="consultarMaterialBelico.jsf"/>
+	
+	</p:submenu>
+	
+	
+	
+	
+	<p:submenu label="Cadastro de Setores">
+	<p:menuitem value="Consultar Setor" icon="ui-icon-search" url="editarSetor.jsf"/>
+	</p:submenu>
+	
+	<p:submenu label="Adicionar Carga ao Policial">
+		<p:menuitem value="Adicionar Carga" icon="ui-icon-search" url="adicionarCarga.jsf"/>
+		    
+		    <p:menuitem value="Relatório de Cargas" icon="ui-icon-search" url="RelatorioCargas.jsf"/>
+		
+		</p:submenu>
+	
+	<p:submenu label="Abrir Chamado">
+	<p:menuitem value="Novo Chamado" icon="ui-icon-disk" url="abrirChamado.jsf"/>
+	<p:menuitem  value="Chamados Abertos" icon="ui-icon-search" url="chamadoAberto.jsf"/>
+	
+	</p:submenu>
+	
+	
+	<p:submenu label="Mapa de Localização">
+	<p:menuitem value="Localizar Armas" icon="ui-icon-disk" url="Mapa.jsf"/>
+		<p:menuitem value="Relatório de Armas" icon="ui-icon-disk" url="RelatorioArmas.jsf"/>
+	
+	</p:submenu>
+	
+	<p:submenu label="Sair">
+	<p:menuitem value="Deslogar" icon="ui-icon-arrowrefresh-1-w" url="login.jsf"/>
+	
+	
+	
+	</p:submenu>
+
+	</p:menubar>
+			<br/>
+		
+			<p:fieldset style=" border:2px solid #87cefa;">
+
+
+				
+				<p:panelGrid columns="2" style=" border:2px solid #87cefa;">
+				<ui:remove>
+				<p:outputLabel for="id" value="Id:" />
+				<p:inputText id="id" value="#{materialbelicoMB.materialbelico.id}"
+					required="true"></p:inputText>
+			</ui:remove>
+			<p:outputLabel for="material" value="Tipo de Material:" />
+        <p:selectOneMenu id="material" value="#{materialbelicoMB.materialbelico.tipoMaterial}" style="width:125px">
+            <f:selectItem itemLabel="Selecione..." itemValue="" />
+            <f:selectItem itemLabel="PISTOLA" itemValue="PISTOLA" />
+            <f:selectItem itemLabel="FUZIL" itemValue="FUZIL" />
+            <f:selectItem itemLabel="ESCOPETA" itemValue="ESCOPETA" />
+            <f:selectItem itemLabel="CARABINA" itemValue="CARABINA" />
+            <f:selectItem itemLabel="MUNIÇÃO" itemValue="MUNIÇÃO" />
+        </p:selectOneMenu>
+                    <h:outputLabel for="calibre" value="Calibre"/>
+			        <p:inputText id="calibre" value="#{materialbelicoMB.materialbelico.calibre}"></p:inputText>
+			        <h:outputLabel for="nm_serie" value="Número de Série"/>
+			        <p:inputText id="nm_serie" required="true" value="#{materialbelicoMB.materialbelico.nm_serie}"></p:inputText>
+					<h:outputLabel for="nm_sigma" value="Número do Sigma" />
+					<p:inputText  id="nm_sigma" required="true" value="#{materialbelicoMB.materialbelico.nm_sigma}">
+					</p:inputText>
+					<h:outputLabel for="marca" value="Marca" />
+					<p:inputText id="marca" required="true" value="#{materialbelicoMB.materialbelico.marca}" ></p:inputText>
+					<ui:remove>
+					<h:outputLabel for="qtd" value="Quantidade" />
+					<p:inputText id="qtd" required="true" value="#{materialbelicoMB.materialbelico.qtd}" ></p:inputText>
+                    </ui:remove>
+                    <p:outputLabel for ="status" value="Status" />	     
+ 	                <p:selectOneMenu id="status" value="#{materialbelicoMB.materialbelico.status}"  >
+				    <f:selectItem itemLabel="Selecione..." itemValue="" />
+                    <f:selectItem itemLabel="DISPONIVEL" itemValue="DISPONIVEL" />
+                    <f:selectItem itemLabel="OCUPADO" itemValue="OCUPADO" />
+                    </p:selectOneMenu>
+				
+				
+				
+				</p:panelGrid>
+				<br/>
+		<h:panelGroup>
+				<p:commandButton ajax="false" style="width:100px;" value="Salvar"
+					action="#{materialbelicoMB.acaoSalvar}">
+					<f:param name="codParam" value="#{materialbelicoMB.materialbelico.id}" />
+				</p:commandButton>
+				
+				
+			</h:panelGroup>
+				
+				<p:messages errorStyle="color: red" infoStyle="color: blue"
+			warnStyle="color: yellow" />
+				
+			</p:fieldset>
+							</h:form>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							
+		<f:facet name="footer"  >
+		<div >
+	
+	            <div align="center">
+				<h:outputText style="color:#87cefa; font-size: 15px;" value="Copyright&copy; 2017  - Trabalho de Conclusão de Curso"></h:outputText>
+				</div>
+				<div align="center">
+                <h:outputLink style="color:red;"  value="https://pmerj.rj.gov.br/" target="blank">Site PMERJ</h:outputLink>
+                
+                                </div>
+                                <h:outputText value="Usuário: " style="color:red;"/>
+	<h:outputText style="color:red;" value="#{loginMB.usuario.nome}"></h:outputText>
+                     <div align="right"> <a href="http://hibernate.org/" target="blank"><p:graphicImage  style="float:right;height:40px; width:40px;" url="img/hibernate.png" 
+					></p:graphicImage></a></div>
+					<div align="right"> <a href="http://tomcat.apache.org/" target="blank"><p:graphicImage style="float:right; height:40px; width:40px;" url="img/download.jpg" 
+					></p:graphicImage></a></div>
+					<div align="right"> <a href="http://www.oracle.com/technetwork/java/index.html" target="blank"><p:graphicImage  style="float:right; height:40px; width:40px;" url="img/java.png"  
+					></p:graphicImage></a></div>
+					<div align="right"> <a href="https://www.primefaces.org/" target="blank"><p:graphicImage   url="img/a.jpg" style="height:40px; width:40px;"
+					></p:graphicImage></a></div>
+					
+					
+					
+				</div>
+			</f:facet>
+			</p:panel>
+
+			
+
+	
+</h:body>
+</html>
+
+

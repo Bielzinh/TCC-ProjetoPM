@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:p="http://primefaces.org/ui"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+
+
+
+
+	<title><ui:insert name="titulo">Título</ui:insert></title>
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+	<link rel="stylesheet" type="text/css" href="css/estilo.css" />
+	
+</h:head>
+<h:body>
+<div align="center">
+<p:panel style=" border:2px solid #87cefa;">
+	<h:form id="form" prependId="false">
+	<br/>
+	
+	
+<div id="imagem" align="center">
+			<ui:insert name="imagem">
+				<p:graphicImage url="img/logo-branca-original.png" style="background:black;"
+					></p:graphicImage>
+			</ui:insert>
+            </div>
+            
+		<p:messages errorStyle="color: red" infoStyle="color: blue"
+			warnStyle="color: yellow" />
+
+		<ui:insert name="cabecalho"></ui:insert>
+		<ui:insert name="conteudo"></ui:insert>
+		
+		
+	</h:form>
+	    
+	    <br/>
+	    <br/>
+	    <br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		
+	
+	<f:facet name="footer"  >
+	
+	
+		<div >
+	
+	            <div align="center">
+				<h:outputText style="color:#87cefa; font-size: 15px;" value="Copyright&copy; 2017 - Trabalho de Conclusão de Curso"></h:outputText>
+				</div>
+				<div align="center">
+                <h:outputLink style="color:red;"  value="https://pmerj.rj.gov.br/" target="blank">Site PMERJ</h:outputLink>
+                
+                                </div>
+                     <div align="right"> <a href="http://hibernate.org/" target="blank"><p:graphicImage  style="float:right;height:40px; width:40px;" url="img/hibernate.png" 
+					></p:graphicImage></a></div>
+					<div align="right"> <a href="http://tomcat.apache.org/" target="blank"><p:graphicImage style="float:right; height:40px; width:40px;" url="img/download.jpg" 
+					></p:graphicImage></a></div>
+					<div align="right"> <a href="http://www.oracle.com/technetwork/java/index.html" target="blank"><p:graphicImage  style="float:right; height:40px; width:40px;" url="img/java.png"  
+					></p:graphicImage></a></div>
+					<div align="right"> <a href="https://www.primefaces.org/" target="blank"><p:graphicImage   url="img/a.jpg" style="height:40px; width:40px;"
+					></p:graphicImage></a></div>
+					
+					
+					
+				</div>
+			</f:facet>
+			</p:panel>
+			</div>
+</h:body>
+</html>
+	
+	

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+
+
+
+<title> Cadastrar Usuários</title>
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+	<link rel="stylesheet" type="text/css" href="css/estilo.css" />
+	
+</h:head>
+
+
+<h:body>		
+		<h:form>	
+		
+		<p:toolbar >
+				<p:toolbarGroup align="left">
+					
+					<p:commandButton  type="push" value="Login"
+						action="login.jsf"  immediate="true" image="ui-icon-home">
+						 </p:commandButton>
+						 
+					<p:commandButton ajax="false" type="push" value="Usuarios Cadastrados"
+						action="#{cadastroMB.acaoListar}" image="ui-icon-home"
+						 />
+				</p:toolbarGroup>
+			</p:toolbar>
+			
+	</h:form>
+	<h:form>
+	
+		
+<p:fieldset style=" border:2px solid #87cefa;">
+		
+		<br/>
+		 <h:inputHidden value="#{cadastroMB.usuario.codigo}"></h:inputHidden>
+			<h:panelGrid columns="2">
+                <ui:remove>
+				<h:outputText value="Código:"></h:outputText>
+			<h:outputText id="codigo" value="#{cadastroMB.usuario.codigo}">
+			</h:outputText>
+	</ui:remove>
+				
+				<h:outputLabel value="Nome:" for="Nome"></h:outputLabel>
+				<p:inputText id="nome" value="#{cadastroMB.usuario.nome}" required="true"
+					size="20" 
+					requiredMessage="O nome é obrigatório">	
+				</p:inputText>
+				
+				
+				<h:outputLabel value="Email:" for="Email"></h:outputLabel>
+				<p:inputText  id="email" value="#{cadastroMB.usuario.email}" required="true"
+					requiredMessage="O email é obrigatório">
+				</p:inputText>		
+			
+				
+				
+				<h:outputLabel for="Sexo" value="Sexo:" />
+        <p:selectOneMenu id="Sexo" value="#{cadastroMB.usuario.sexo}" style="width:125px" feedback="true" required="true" requiredMessage="Escolha seu Sexo">
+            <f:selectItem itemLabel="Selecione" itemValue="" />
+            <f:selectItem itemLabel="MASCULINO" itemValue="MASCULINO" />
+            <f:selectItem itemLabel="FEMININO" itemValue="FEMININO" />
+        </p:selectOneMenu>
+			
+			
+			
+				<h:outputLabel value="Nascimento:" for="Nascimento"></h:outputLabel>
+			
+				<p:calendar  locale="pt" showButtonPanel="true" navigator="true" 
+						id="nascimento" value="#{cadastroMB.usuario.nascimento}" showOn="button" required="true"
+					size="20" maxlength="20"
+					requiredMessage="A data de nascimento é obrigatória"></p:calendar>
+			
+			
+		
+				
+				<h:outputLabel value="Apelido:" for="Apelido"></h:outputLabel>
+				<p:inputText id="apelido" value="#{cadastroMB.usuario.apelido}" required="true"
+					requiredMessage="O apelido é obrigatório">	
+				</p:inputText>
+				
+				
+				<h:outputLabel value="Login:" for="Login"></h:outputLabel>
+				<p:inputText id="login" value="#{cadastroMB.usuario.login}" required="true"
+					requiredMessage="O login é obrigatório">	
+				</p:inputText>
+				
+				
+				
+					<h:outputLabel value="Senha:" for="senha"></h:outputLabel>
+					
+					<p:password id="senha" value="#{cadastroMB.usuario.senha}"  feedback="true" required="true" requiredMessage="A senha é obrigatória"/>
+				<p:commandButton value="Cadastre-se" ajax="false"
+					action="#{cadastroMB.acaoSalvar}" />
+		 
+
+
+
+			</h:panelGrid>
+			</p:fieldset>
+</h:form>
+<p:messages />
+</h:body>
+
+
+</html>
